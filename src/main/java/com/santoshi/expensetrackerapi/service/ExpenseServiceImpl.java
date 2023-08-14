@@ -1,13 +1,13 @@
 package com.santoshi.expensetrackerapi.service;
 
 import com.santoshi.expensetrackerapi.entity.Expense;
+import com.santoshi.expensetrackerapi.exceptions.ResourceNotFoundException;
 import com.santoshi.expensetrackerapi.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,7 +28,7 @@ public class ExpenseServiceImpl implements ExpenseService {
         if (expense.isPresent()) {
             return expense.get();
         }
-        throw new RuntimeException("Expense is  not found for the id " + id);
+        throw new ResourceNotFoundException("Expense is not found for the id " + id);
     }
 
     @Override
