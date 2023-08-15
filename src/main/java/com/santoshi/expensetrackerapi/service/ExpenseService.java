@@ -4,6 +4,7 @@ import com.santoshi.expensetrackerapi.entity.Expense;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface ExpenseService {
@@ -17,5 +18,11 @@ public interface ExpenseService {
     Expense saveExpenseDetails(Expense expense);
 
     Expense updateExpenseDetails(Long id, Expense expense);
+
+    List<Expense> readByCategory(String category, Pageable pageable);
+
+    List<Expense> searchExpenseByKeyword(String keyword, Pageable pageable);
+
+    List<Expense> readByDate(Date startDate, Date endDate, Pageable pageable);
 
 }
