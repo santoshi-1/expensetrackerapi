@@ -4,11 +4,11 @@ import com.santoshi.expensetrackerapi.entity.Expense;
 import com.santoshi.expensetrackerapi.service.ExpenseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -42,6 +42,21 @@ public class ExpenseController {
     @PutMapping("/expenses/{id}")
     public Expense updateExpenseDetails(@RequestBody Expense expense, @PathVariable Long id) {
         return expenseService.updateExpenseDetails(id, expense);
+    }
+
+    @GetMapping("/expenses/category")
+    public List<Expense> getExpensesByCategory(@RequestParam String category, Pageable pageable) {
+        return expenseService.readByCategory(category, pageable);
+    }
+
+    @GetMapping("/expenses/name")
+    public List<Expense> getAllExpensesByKeyword(@RequestParam String keyword, Pageable pageable) {
+        return expenseService.searchExpenseByKeyword(keyword, pageable);
+    }
+
+    @GetMapping("/expenses/date")
+    public List<Expense> getAllExpensesByDate(@RequestParam(required = false) Date startDate, @RequestParam(required = false) Date endDate, Pageable pageable) {
+        return expenseService.readByDate(startDate, endDate, pageable);
     }
 
 
