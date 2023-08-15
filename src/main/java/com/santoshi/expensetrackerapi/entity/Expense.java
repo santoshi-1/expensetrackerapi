@@ -12,7 +12,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @Data // getter and setters
