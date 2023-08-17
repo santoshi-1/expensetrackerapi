@@ -16,20 +16,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/users/{id}")
-    public ResponseEntity<User> get(@PathVariable Long id) {
-        return new ResponseEntity<User>(userService.readUser(id), HttpStatus.OK);
+    @GetMapping("/profile")
+    public ResponseEntity<User> get() {
+        return new ResponseEntity<User>(userService.readUser(), HttpStatus.OK);
     }
 
-    @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUserDetails(@Valid @RequestBody User user, @PathVariable Long id) {
-        User updatedUser = userService.updateUser(user, id);
+    @PutMapping("/profile")
+    public ResponseEntity<User> updateUserDetails(@Valid @RequestBody User user) {
+        User updatedUser = userService.updateUser(user);
         return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
     }
 
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) throws ResourceNotFoundException {
-        userService.deleteUser(id);
+    @DeleteMapping("/deactivate")
+    public ResponseEntity<HttpStatus> deleteUser() throws ResourceNotFoundException {
+        userService.deleteUser();
         return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
     }
 

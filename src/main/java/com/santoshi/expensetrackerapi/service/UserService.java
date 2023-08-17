@@ -7,10 +7,12 @@ public interface UserService {
 
     User registerUser(UserModal userModal);
 
-    User readUser(Long id);
+    User readUser();
 
-    User updateUser(User user, Long id);
+    User updateUser(User user);
 
-    void deleteUser(Long id);
+    void deleteUser();
+
+    User getLoggedInUser();
 
 }
